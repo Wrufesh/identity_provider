@@ -1,0 +1,13 @@
+FROM python:3.10
+
+COPY ./requirements/base.txt /app/requirements/dev.txt
+
+WORKDIR /app
+
+RUN pip install --upgrade pip
+
+RUN pip install -r requirements/dev.txt
+
+EXPOSE 8000
+
+CMD uvicorn identity_provider.main:app --host 0.0.0.0 --reload 
